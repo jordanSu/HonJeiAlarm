@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">夯姐的鬧鐘</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Title">夯姊的鬧鐘</string>
+    <string name="comment">姐...就是夯</string>
+    <string name="subTitle">FB聊天室</string>
+</resources>
