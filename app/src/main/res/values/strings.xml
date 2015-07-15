@@ -6,4 +6,9 @@
     <string name="Title">夯姊的鬧鐘</string>
     <string name="comment">姐...就是夯</string>
     <string name="subTitle">FB聊天室</string>
+
+    <string-array name="frequncy">
+        <item> 1秒一次 </item>
+    </string-array>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>
