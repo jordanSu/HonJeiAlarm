@@ -2,6 +2,7 @@ package com.example.user.recall;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -113,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
                     })
                     .show();
             //TODO: intent to HomeActivity
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, HomeActivity.class);
         }
     }
 }
