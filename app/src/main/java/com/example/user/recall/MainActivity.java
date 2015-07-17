@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         clockSwitch.setChecked(false);
         clockSwitch.setClickable(true);
 
-        //fadeIn Animation
+        //fadeIn Animation start
         title.setVisibility(View.VISIBLE);
         title.startAnimation(animFadein);
     }

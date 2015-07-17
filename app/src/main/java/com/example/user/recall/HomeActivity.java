@@ -5,14 +5,27 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 
 public class HomeActivity extends AppCompatActivity {
+    Button listen1Button;
+    Button listen2Button;
+    Button timesetButton;
+    Button frequencyButton;
+    Button aboutButton;
+    Button exitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        listen1Button = (Button)findViewById(R.id.listen1Button);
+        listen2Button = (Button)findViewById(R.id.listen2Button);
+        timesetButton = (Button)findViewById(R.id.timesetButton);
+        frequencyButton = (Button)findViewById(R.id.frequencyButton);
+        aboutButton = (Button)findViewById(R.id.aboutButton);
+        exitButton = (Button)findViewById(R.id.exitButton);
     }
 
     @Override

@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:text="鬧鐘開關"
         android:id="@+id/switch1"
-        android:switchMinWidth="50dp"
+        android:switchMinWidth="80dp"
         android:textSize="30dp"
         android:splitTrack="false"
         android:singleLine="false"
