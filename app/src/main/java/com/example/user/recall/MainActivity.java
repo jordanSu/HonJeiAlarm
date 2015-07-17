@@ -3,6 +3,7 @@ package com.example.user.recall;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -93,8 +94,11 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     private Switch.OnCheckedChangeListener switchListener = new Switch.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            final Intent intent = new Intent();
+            intent.setClass(MainActivity.this, HomeActivity.class);
             if (clockSwitch.isChecked()) {
                 clockSwitch.setEnabled(false);
+
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("夯姐的鬧鐘即將開啟")
                         .setIcon(R.mipmap.alarmclock_icon)
@@ -102,21 +106,52 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(MainActivity.this, "即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
-                                        .show();
+                                new AsyncTask<Void, Void, Void>() {
+                                    @Override
+                                    protected void onPreExecute() {
+                                        super.onPreExecute();
+                                        Toast.makeText(MainActivity.this, "即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
+                                                .show();
+                                    }
+
+                                    @Override
+                                    protected Void doInBackground(Void... params) {
+                                        return null;
+                                    }
+
+                                    @Override
+                                    protected void onPostExecute(Void aVoid) {
+                                        super.onPostExecute(aVoid);
+                                        startActivity(intent);
+                                    }
+                                }.execute();
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(MainActivity.this, "你以為你逃得掉嗎？\n即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
-                                        .show();
+                                new AsyncTask<Void, Void, Void>() {
+                                    @Override
+                                    protected void onPreExecute() {
+                                        super.onPreExecute();
+                                        Toast.makeText(MainActivity.this, "你以為你逃得掉嗎？\n即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
+                                                .show();
+                                    }
+
+                                    @Override
+                                    protected Void doInBackground(Void... params) {
+                                        return null;
+                                    }
+
+                                    @Override
+                                    protected void onPostExecute(Void aVoid) {
+                                        super.onPostExecute(aVoid);
+                                        startActivity(intent);
+                                    }
+                                }.execute();
                             }
                         })
                         .show();
-                //TODO: intent to HomeActivity
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, HomeActivity.class);
             }
         }
     };
