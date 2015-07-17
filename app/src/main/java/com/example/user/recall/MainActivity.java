@@ -15,7 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements Animation.AnimationListener, CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements Animation.AnimationListener {
 
     TextView title, subTitle, word;
     Switch clockSwitch;
@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         title.setVisibility(View.VISIBLE);
         title.startAnimation(animFadein);
 
-        clockSwitch.setOnCheckedChangeListener(this);
+
+        clockSwitch.setOnCheckedChangeListener(switchListener);
     }
 
     @Override
@@ -89,33 +90,34 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
 
     }
 
-    //if switch is turn on
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (clockSwitch.isChecked()) {
-            clockSwitch.setEnabled(false);
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("夯姐的鬧鐘即將開啟")
-                    .setIcon(R.mipmap.alarmclock_icon)
-                    .setMessage("請確認是否開啟？")
-                    .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(MainActivity.this, "即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
-                            .show();
-                        }
-                    })
-                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(MainActivity.this, "你以為你逃得掉嗎？\n即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
-                            .show();
-                        }
-                    })
-                    .show();
-            //TODO: intent to HomeActivity
-            Intent intent = new Intent();
-            intent.setClass(MainActivity.this, HomeActivity.class);
+    private Switch.OnCheckedChangeListener switchListener = new Switch.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (clockSwitch.isChecked()) {
+                clockSwitch.setEnabled(false);
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("夯姐的鬧鐘即將開啟")
+                        .setIcon(R.mipmap.alarmclock_icon)
+                        .setMessage("請確認是否開啟？")
+                        .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this, "即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this, "你以為你逃得掉嗎？\n即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        })
+                        .show();
+                //TODO: intent to HomeActivity
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, HomeActivity.class);
+            }
         }
-    }
+    };
 }
