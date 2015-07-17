@@ -3,6 +3,11 @@ package com.example.user.recall;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,19 +32,31 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         title = (TextView)findViewById(R.id.title);
         subTitle = (TextView)findViewById(R.id.subtitle);
         word = (TextView)findViewById(R.id.word);
         clockSwitch = (Switch)findViewById(R.id.switch1);
+
         animFadein = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
         animFadein.setFillAfter(true);
-        animFadein.setAnimationListener(this);
 
+        animFadein.setAnimationListener(this);
+        clockSwitch.setOnCheckedChangeListener(switchListener);
+
+        clockSwitch.setChecked(false);
+        clockSwitch.setClickable(true);
+
+        //fadeIn Animation
         title.setVisibility(View.VISIBLE);
         title.startAnimation(animFadein);
+    }
 
-
-        clockSwitch.setOnCheckedChangeListener(switchListener);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        clockSwitch.setChecked(false);
+        clockSwitch.setEnabled(true);
     }
 
     @Override
@@ -65,9 +82,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     }
 
     @Override
-    public void onAnimationStart(Animation animation) {
-
-    }
+    public void onAnimationStart(Animation animation) {}
 
     @Override
     public void onAnimationEnd(Animation animation) {
@@ -87,72 +102,69 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     }
 
     @Override
-    public void onAnimationRepeat(Animation animation) {
-
-    }
+    public void onAnimationRepeat(Animation animation) {}
 
     private Switch.OnCheckedChangeListener switchListener = new Switch.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            final Intent intent = new Intent();
-            intent.setClass(MainActivity.this, HomeActivity.class);
             if (clockSwitch.isChecked()) {
                 clockSwitch.setEnabled(false);
 
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("夯姐的鬧鐘即將開啟")
-                        .setIcon(R.mipmap.alarmclock_icon)
+                        .setIcon(resizeImage(R.mipmap.alarmclock_icon, 100, 100))
                         .setMessage("請確認是否開啟？")
                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new AsyncTask<Void, Void, Void>() {
-                                    @Override
-                                    protected void onPreExecute() {
-                                        super.onPreExecute();
-                                        Toast.makeText(MainActivity.this, "即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
-                                                .show();
-                                    }
-
-                                    @Override
-                                    protected Void doInBackground(Void... params) {
-                                        return null;
-                                    }
-
-                                    @Override
-                                    protected void onPostExecute(Void aVoid) {
-                                        super.onPostExecute(aVoid);
-                                        startActivity(intent);
-                                    }
-                                }.execute();
+                                Toast.makeText(MainActivity.this, "即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
+                                        .show();
+                                gotoHome.start();
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new AsyncTask<Void, Void, Void>() {
-                                    @Override
-                                    protected void onPreExecute() {
-                                        super.onPreExecute();
-                                        Toast.makeText(MainActivity.this, "你以為你逃得掉嗎？\n即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
-                                                .show();
-                                    }
-
-                                    @Override
-                                    protected Void doInBackground(Void... params) {
-                                        return null;
-                                    }
-
-                                    @Override
-                                    protected void onPostExecute(Void aVoid) {
-                                        super.onPostExecute(aVoid);
-                                        startActivity(intent);
-                                    }
-                                }.execute();
+                                Toast.makeText(MainActivity.this, "你以為你逃得掉嗎？\n即將進入夯姐的鬧鐘!", Toast.LENGTH_LONG)
+                                        .show();
+                                gotoHome.start();
                             }
                         })
                         .show();
             }
         }
     };
+
+    Thread gotoHome = new Thread(){
+        @Override
+        public void run() {
+            super.run();
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, HomeActivity.class);
+            try {
+                Thread.sleep(3500);
+                startActivity(intent);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    private Drawable resizeImage(int resId, int w, int h)
+    {
+        // load the original Bitmap
+        Bitmap BitmapOrg = BitmapFactory.decodeResource(getResources(), resId);
+        int width = BitmapOrg.getWidth();
+        int height = BitmapOrg.getHeight();
+        int newWidth = w;
+        int newHeight = h;
+        // calculate the scale
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // create a matrix for the manipulation
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap resizedBitmap = Bitmap.createBitmap(BitmapOrg, 0, 0,width, height, matrix, true);
+        return new BitmapDrawable(resizedBitmap);
+    }
 }

@@ -26,11 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/comment"
-        android:id="@+id/word"
-        android:layout_marginTop="50dp"
-        style="@style/Base.TextAppearance.AppCompat.Headline"
-        android:layout_below="@+id/subtitle"
+        android:text="@string/subTitle"
+        android:id="@+id/subtitle"
+        style="@style/Base.TextAppearance.AppCompat.Display1"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
         android:layout_gravity="center_horizontal" />
@@ -39,10 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/subTitle"
-        android:id="@+id/subtitle"
-        style="@style/Base.TextAppearance.AppCompat.Display1"
-        android:layout_below="@+id/title"
+        android:text="@string/comment"
+        android:id="@+id/word"
+        android:layout_marginTop="50dp"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:layout_below="@+id/subtitle"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
         android:layout_gravity="center_horizontal" />
@@ -59,7 +59,7 @@
         android:showText="false"
         android:layout_below="@+id/word"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp" />
 
 </LinearLayout>
