@@ -52,7 +52,6 @@
         android:layout_height="wrap_content"
         android:text="鬧鐘開關"
         android:id="@+id/switch1"
-        android:switchMinWidth="80dp"
         android:textSize="30dp"
         android:splitTrack="false"
         android:singleLine="false"
@@ -60,6 +59,9 @@
         android:layout_below="@+id/word"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp" />
+        android:thumb="@drawable/switch_inner_holo_dark"
+        android:track="@drawable/switch_track_holo_dark"
+        android:layout_marginTop="100dp"
+        android:visibility="invisible" />
 
 </LinearLayout>

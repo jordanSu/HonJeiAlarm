@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         clockSwitch.setClickable(true);
 
         //fadeIn Animation start
-        title.setVisibility(View.VISIBLE);
-        title.startAnimation(animFadein);
+        startAnimation.start();
     }
 
     @Override
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        title.clearAnimation();
+        /*title.clearAnimation();
         if (count == 0) {
             count++;
             subTitle.setVisibility(View.VISIBLE);
@@ -96,8 +95,8 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
             word.setVisibility(View.VISIBLE);
             word.startAnimation(animFadein);
             subTitle.clearAnimation();
-            //ok
-        }
+            clockSwitch.setVisibility(View.VISIBLE);
+        }*/
     }
 
     @Override
@@ -143,6 +142,43 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
             try {
                 Thread.sleep(3500);
                 startActivity(intent);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    Thread startAnimation = new Thread(){
+        @Override
+        public void run() {
+            super.run();
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        title.setVisibility(View.VISIBLE);
+                        title.startAnimation(animFadein);
+                    }
+                });
+                Thread.sleep(2000);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        title.clearAnimation();
+                        subTitle.setVisibility(View.VISIBLE);
+                        subTitle.startAnimation(animFadein);
+                    }
+                });
+                Thread.sleep(2000);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        subTitle.clearAnimation();
+                        word.setVisibility(View.VISIBLE);
+                        word.startAnimation(animFadein);
+                        clockSwitch.setVisibility(View.VISIBLE);
+                    }
+                });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
