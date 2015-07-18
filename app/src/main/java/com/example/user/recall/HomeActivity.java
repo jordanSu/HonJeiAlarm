@@ -32,14 +32,20 @@ public class HomeActivity extends AppCompatActivity {
         aboutButton = (Button)findViewById(R.id.aboutButton);
         exitButton = (Button)findViewById(R.id.exitButton);
 
-        //setonLongClickListener
-        listen1Button.setOnLongClickListener(getinfo);
-        listen2Button.setOnLongClickListener(getinfo);
-        timesetButton.setOnLongClickListener(getinfo);
-        frequencyButton.setOnLongClickListener(getinfo);
+        //setOnLongClickListener
+        listen1Button.setOnLongClickListener(getInfo);
+        listen2Button.setOnLongClickListener(getInfo);
+        timesetButton.setOnLongClickListener(getInfo);
+        frequencyButton.setOnLongClickListener(getInfo);
+
+       //setOnClickListener
+        listen1Button.setOnClickListener(buttonClick);
+        listen2Button.setOnClickListener(buttonClick);
+        timesetButton.setOnClickListener(buttonClick);
+        frequencyButton.setOnClickListener(buttonClick);
     }
 
-    Button.OnLongClickListener getinfo = new Button.OnLongClickListener() {
+    Button.OnLongClickListener getInfo = new Button.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
             AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
@@ -68,6 +74,33 @@ public class HomeActivity extends AppCompatActivity {
             instruction.show();
             return false;
         }
+    };
+
+    Button.OnClickListener buttonClick = new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()) {
+                case R.id.listen1Button:
+                    //TODO: play chatroom.ogg
+                    break;
+                case R.id.listen2Button:
+                    //TODO: play messenger.ogg
+                    break;
+                case R.id.timesetButton:
+                    //TODO: let user set their Alarm Clock time
+                    break;
+                case R.id.frequencyButton:
+                    //TODO: let user set their frequency
+                    break;
+                case R.id.aboutButton:
+                    //TODO: AlertDialog to show the info of this app and inventor
+                    break;
+                case R.id.exitButton:
+                    //TODO: AlertDialog to double check exit
+                    break;
+            }
+        }
+
     };
 
     @Override
