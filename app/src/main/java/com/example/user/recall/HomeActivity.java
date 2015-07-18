@@ -2,6 +2,8 @@ package com.example.user.recall;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.preference.DialogPreference;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ public class HomeActivity extends AppCompatActivity {
     Button frequencyButton;
     Button aboutButton;
     Button exitButton;
+    MediaPlayer sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         listen2Button.setOnClickListener(buttonClick);
         timesetButton.setOnClickListener(buttonClick);
         frequencyButton.setOnClickListener(buttonClick);
+
+
     }
 
     Button.OnLongClickListener getInfo = new Button.OnLongClickListener() {
@@ -58,10 +63,10 @@ public class HomeActivity extends AppCompatActivity {
                     });
             switch(v.getId()) {
                 case R.id.listen1Button:
-                    builder.setMessage("讓您試聽鈴聲一\n此亦為FaceBook聊天室中用之提示聲");
+                    builder.setMessage("讓您試聽鈴聲一\n此亦為聊天室中用之提示聲");
                     break;
                 case R.id.listen2Button:
-                    builder.setMessage("讓您試聽鈴聲二\n此亦為Messenger聊天室中用之提示聲");
+                    builder.setMessage("讓您試聽鈴聲二\n此亦為Messenger中用之提示聲");
                     break;
                 case R.id.timesetButton:
                     builder.setMessage("讓您能選擇鈴聲並設定你的鬧鐘");
@@ -82,9 +87,13 @@ public class HomeActivity extends AppCompatActivity {
             switch(v.getId()) {
                 case R.id.listen1Button:
                     //TODO: play chatroom.ogg
+                    sound = MediaPlayer.create(HomeActivity.this, R.raw.chatroom);
+                    sound.start();
                     break;
                 case R.id.listen2Button:
-                    //TODO: play messenger.ogg
+                    //TODO: play meesenger.ogg
+                    sound = MediaPlayer.create(HomeActivity.this, R.raw.messenger);
+                    sound.start();
                     break;
                 case R.id.timesetButton:
                     //TODO: let user set their Alarm Clock time
