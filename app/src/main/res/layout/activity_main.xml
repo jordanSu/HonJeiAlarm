@@ -17,7 +17,6 @@
         android:id="@+id/title"
         android:layout_marginTop="99dp"
         style="@style/Base.TextAppearance.AppCompat.Display2"
-        android:visibility="invisible"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal" />
@@ -31,8 +30,8 @@
         style="@style/Base.TextAppearance.AppCompat.Display1"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.2"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,11 +40,13 @@
         android:text="@string/comment"
         android:id="@+id/word"
         android:layout_marginTop="50dp"
-        style="@style/Base.TextAppearance.AppCompat.Headline"
+        style="@style/TextAppearance.AppCompat.Display2"
         android:layout_below="@+id/subtitle"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.6"
+        android:textStyle="italic"
+        android:textColor="@color/primary_material_dark" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -60,8 +61,6 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:thumb="@drawable/switch_inner_holo_dark"
-        android:track="@drawable/switch_track_holo_dark"
-        android:visibility="invisible"
-        android:layout_weight="5" />
+        android:track="@drawable/switch_track_holo_dark" />
 
 </LinearLayout>

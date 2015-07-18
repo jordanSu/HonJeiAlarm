@@ -37,6 +37,11 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         word = (TextView)findViewById(R.id.word);
         clockSwitch = (Switch)findViewById(R.id.switch1);
 
+        title.setVisibility(View.INVISIBLE);
+        subTitle.setVisibility(View.INVISIBLE);
+        word.setVisibility(View.INVISIBLE);
+        clockSwitch.setVisibility(View.INVISIBLE);
+
         animFadein = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
         animFadein.setFillAfter(true);
 
@@ -128,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
             try {
                 Thread.sleep(3500);
                 startActivity(intent);
+                finish();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

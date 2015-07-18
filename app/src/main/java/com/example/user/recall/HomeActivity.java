@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.preference.DialogPreference;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +47,8 @@ public class HomeActivity extends AppCompatActivity {
         listen2Button.setOnClickListener(buttonClick);
         timesetButton.setOnClickListener(buttonClick);
         frequencyButton.setOnClickListener(buttonClick);
-
+        aboutButton.setOnClickListener(buttonClick);
+        exitButton.setOnClickListener(buttonClick);
 
     }
 
@@ -103,10 +105,20 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case R.id.aboutButton:
                     //TODO: AlertDialog to show the info of this app and inventor
+                    new AlertDialog.Builder(HomeActivity.this)
+                            .setTitle("關於這個App")
+                            .setMessage("夯姐的時鐘:FB聊天室\n只是為了好玩而已\nApp Inventor:哲哲")
+                            .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .show();
                     break;
                 case R.id.exitButton:
-                    //TODO: AlertDialog to double check exit
-                    break;
+                    finish();
+                    return;
             }
         }
 
