@@ -83,21 +83,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     public void onAnimationStart(Animation animation) {}
 
     @Override
-    public void onAnimationEnd(Animation animation) {
-        /*title.clearAnimation();
-        if (count == 0) {
-            count++;
-            subTitle.setVisibility(View.VISIBLE);
-            subTitle.startAnimation(animFadein);
-        }
-        else if (count == 1) {
-            count++;
-            word.setVisibility(View.VISIBLE);
-            word.startAnimation(animFadein);
-            subTitle.clearAnimation();
-            clockSwitch.setVisibility(View.VISIBLE);
-        }*/
-    }
+    public void onAnimationEnd(Animation animation) {}
 
     @Override
     public void onAnimationRepeat(Animation animation) {}

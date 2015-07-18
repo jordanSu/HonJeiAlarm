@@ -1,10 +1,15 @@
 package com.example.user.recall;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.preference.DialogPreference;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 
@@ -26,7 +31,44 @@ public class HomeActivity extends AppCompatActivity {
         frequencyButton = (Button)findViewById(R.id.frequencyButton);
         aboutButton = (Button)findViewById(R.id.aboutButton);
         exitButton = (Button)findViewById(R.id.exitButton);
+
+        //setonLongClickListener
+        listen1Button.setOnLongClickListener(getinfo);
+        listen2Button.setOnLongClickListener(getinfo);
+        timesetButton.setOnLongClickListener(getinfo);
+        frequencyButton.setOnLongClickListener(getinfo);
     }
+
+    Button.OnLongClickListener getinfo = new Button.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                    builder.setTitle("說明");
+                    builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            switch(v.getId()) {
+                case R.id.listen1Button:
+                    builder.setMessage("讓您試聽鈴聲一\n此亦為FaceBook聊天室中用之提示聲");
+                    break;
+                case R.id.listen2Button:
+                    builder.setMessage("讓您試聽鈴聲二\n此亦為Messenger聊天室中用之提示聲");
+                    break;
+                case R.id.timesetButton:
+                    builder.setMessage("讓您能選擇鈴聲並設定你的鬧鐘");
+                    break;
+                case R.id.frequencyButton:
+                    builder.setMessage("讓夯姐上身,提示聲不斷,還可以調整夯的程度!!!");
+                    break;
+            }
+            AlertDialog instruction = builder.create();
+            instruction.show();
+            return false;
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

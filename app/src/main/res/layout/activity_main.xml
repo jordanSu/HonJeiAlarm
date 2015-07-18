@@ -61,7 +61,7 @@
         android:layout_gravity="center_horizontal"
         android:thumb="@drawable/switch_inner_holo_dark"
         android:track="@drawable/switch_track_holo_dark"
-        android:layout_marginTop="100dp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_weight="5" />
 
 </LinearLayout>
