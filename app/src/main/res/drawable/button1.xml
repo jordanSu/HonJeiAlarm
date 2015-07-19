@@ -2,17 +2,17 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="#343434"></solid>
-            <stroke android:color="#171717" android:width="1dp"></stroke>
-            <corners android:radius="3dp"></corners>
+            <solid android:color="#1394a3"></solid>
+            <stroke android:color="#000000" android:width="3dp"></stroke>
+            <corners android:radius="5dp"></corners>
             <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp"></padding>
         </shape>
     </item>
     <item>
         <shape>
-            <gradient android:angle="270" android:color="#343434"></gradient>
-            <stroke android:color="#171717" android:width="1dp"></stroke>
-            <corners android:radius="4dp"></corners>
+            <gradient android:angle="315" android:startColor="#31b4dd" android:endColor="#09fff6"></gradient>
+            <stroke android:color="#000000" android:width="3dp"></stroke>
+            <corners android:radius="5dp"></corners>
             <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp"></padding>
         </shape>
     </item>

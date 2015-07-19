@@ -106,8 +106,8 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.aboutButton:
                     //TODO: AlertDialog to show the info of this app and inventor
                     new AlertDialog.Builder(HomeActivity.this)
-                            .setTitle("關於這個App")
-                            .setMessage("夯姐的時鐘:FB聊天室\n只是為了好玩而已\nApp Inventor:哲哲")
+                            .setTitle("關於 夯姐的時鐘:FB聊天室")
+                            .setMessage("只是為了好玩而已\nApp Inventor:哲哲")
                             .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
